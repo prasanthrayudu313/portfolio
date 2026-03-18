@@ -503,10 +503,7 @@ export default function App() {
               connect algorithms, hardware, and real-world validation. My work
               spans HDC-based edge AI, FPGA emulation, digital and embedded
               systems, power modeling, analog and mixed-signal circuits,
-              networking simulation, RF/wireless workflows, and automation. That
-              breadth is reflected across your uploaded resumes in analog image
-              sensor design, power-aware SoC analysis, RF automation, and FPGA
-              validation. :contentReference[oaicite:3]{index=3} :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
+              networking simulation, RF and wireless workflows, and automation.
             </p>
           </div>
         </section>
@@ -544,9 +541,8 @@ export default function App() {
             <p className="eyebrow">Skills</p>
             <h2>Cross-domain capability, grouped like a modern engineering profile.</h2>
             <p>
-              Skills below are aligned to your HDC, FPGA, analog, power,
-              wireless, and automation work, including the uploaded resumes and
-              research/project descriptions. :contentReference[oaicite:6]{index=6} :contentReference[oaicite:7]{index=7} :contentReference[oaicite:8]{index=8}
+              A blend of HDC, FPGA, analog design, power analysis, wireless systems,
+              simulation tools, and engineering automation.
             </p>
           </div>
 
@@ -562,9 +558,9 @@ export default function App() {
             <p className="eyebrow">Projects</p>
             <h2>Click any project to open a full detail popup.</h2>
             <p>
-              The project mix now tells a strong story: HDC and edge AI, FPGA
-              validation, SoC power analysis, analog/mixed-signal design,
-              networking systems, and RF automation. :contentReference[oaicite:9]{index=9} :contentReference[oaicite:10]{index=10} :contentReference[oaicite:11]{index=11}
+              The project mix tells a strong story across HDC and edge AI, FPGA
+              validation, SoC power analysis, analog and mixed-signal design,
+              networking systems, and RF automation.
             </p>
           </div>
 
@@ -610,9 +606,7 @@ export default function App() {
             <p className="eyebrow">Resumes</p>
             <h2>Role-targeted resumes for different opportunities.</h2>
             <p>
-              You uploaded resumes targeted toward analog design, power/SoC
-              analysis, and RF engineering, so this section lets recruiters open
-              the most relevant version directly. :contentReference[oaicite:12]{index=12} :contentReference[oaicite:13]{index=13} :contentReference[oaicite:14]{index=14}
+              Open the version that best matches the role.
             </p>
           </div>
 
@@ -630,8 +624,8 @@ export default function App() {
               <h2>Let’s build something impactful.</h2>
               <p className="contact-copy">
                 I’m interested in engineering roles across AI hardware, HDC,
-                FPGA, embedded systems, power-aware architecture, analog/mixed-signal
-                design, and wireless systems.
+                FPGA, embedded systems, power-aware architecture,
+                analog and mixed-signal design, and wireless systems.
               </p>
             </div>
 
