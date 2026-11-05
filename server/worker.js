@@ -3,7 +3,9 @@
 import { buildMessages, LIMITS } from "./prompt.js";
 import { guardAnswer } from "../src/assistant/answer.js";
 
-const DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct";
+// Open-source chat models on Workers AI, best first. @cf/meta/llama-3.1-8b-instruct was removed on 2026-05-30.
+// Check https://developers.cloudflare.com/workers-ai/models/ if all of these are ever retired.
+const MODELS = ["@cf/meta/llama-3.1-8b-instruct-fp8", "@cf/meta/llama-3.2-3b-instruct"];
 const MAX_BODY = 6000;
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 12;
@@ -66,20 +68,25 @@ export default {
     const built = buildMessages(body.messages, projectId);
     if (!built) return json({ error: "bad_request" }, 400, h);
 
-    try {
-      const stream = await env.AI.run(env.AI_MODEL || DEFAULT_MODEL, {
-        messages: built.messages,
-        stream: true,
-        max_tokens: LIMITS.maxTokens,
-        temperature: 0.3,
-      });
-      return new Response(stream, {
-        headers: { ...h, "Content-Type": "text/event-stream", "Cache-Control": "no-store", "X-Sources": built.sources.join(",") },
-      });
-    } catch (e) {
-      // Free daily quota used up, model unavailable, etc. The site falls back to its built-in answers.
-      // `detail` is the platform's error text (no visitor data), to make a wrong model name easy to spot.
-      return json({ error: "ai_unavailable", detail: String(e?.message || e).slice(0, 200) }, 503, h);
+    // Try the configured model first, then the built-in fallbacks, so one deprecated model doesn't take the chat down.
+    let lastError = "";
+    for (const model of [env.AI_MODEL, ...MODELS].filter(Boolean)) {
+      try {
+        const stream = await env.AI.run(model, {
+          messages: built.messages,
+          stream: true,
+          max_tokens: LIMITS.maxTokens,
+          temperature: 0.3,
+        });
+        return new Response(stream, {
+          headers: { ...h, "Content-Type": "text/event-stream", "Cache-Control": "no-store", "X-Sources": built.sources.join(",") },
+        });
+      } catch (e) {
+        lastError = `${model}: ${String(e?.message || e)}`;
+      }
     }
+    // Every model failed (daily quota used up, all deprecated...). The site falls back to its built-in answers.
+    // `detail` is the platform's error text (no visitor data), to make a bad model name easy to spot.
+    return json({ error: "ai_unavailable", detail: lastError.slice(0, 300) }, 503, h);
   },
 };

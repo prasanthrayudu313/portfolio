@@ -10,4 +10,4 @@ binding = "AI"
 # Add your GitHub Pages origin (and localhost for development).
 ALLOWED_ORIGINS = "https://prasanthrayudu313.github.io,http://localhost:5173"
 # Optional: override the model. Check the Workers AI model catalog for current names and free-plan access.
-# AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+# AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"   # tried first if set; the Worker falls back to its built-in list

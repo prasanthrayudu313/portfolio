@@ -72,9 +72,27 @@ assert.equal((await worker.fetch(new Request("https://w.example/api/chat"), env)
 let last;
 for (let i = 0; i < 14; i++) last = await post(user("tell me about HAME"), { "CF-Connecting-IP": "9.9.9.9" });
 assert.equal(last.status, 429);
-env.AI.run = async () => {
-  throw new Error("quota");
+// First model retired -> the Worker must fall back to the next one.
+const tried = [];
+env.AI.run = async (model, input) => {
+  tried.push(model);
+  if (model.includes('8b-instruct-fp8')) throw new Error('5028: model was deprecated');
+  return new ReadableStream({
+    start(c) {
+      c.enqueue(new TextEncoder().encode('data: {"response":"ok"}\n\n'));
+      c.close();
+    },
+  });
 };
-assert.equal((await post(user("tell me about HAME"))).status, 503);
+assert.equal((await post(user("tell me about HAME"))).status, 200);
+assert.deepEqual(tried, ['@cf/meta/llama-3.1-8b-instruct-fp8', '@cf/meta/llama-3.2-3b-instruct']);
+
+// All models failing -> 503 with the reason.
+env.AI.run = async () => {
+  throw new Error('quota');
+};
+r = await post(user("tell me about HAME"));
+assert.equal(r.status, 503);
+assert.match((await r.json()).detail, /quota/);
 
 console.log("worker.check: all passed");
