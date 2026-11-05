@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-assistant-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node worker.check.mjs && node knowledge/knowledge.check.mjs",
+    "knowledge": "node knowledge/build.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

@@ -1,16 +1,14 @@
-# React + Vite
+# Prasanth Rayudu — Engineering Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 + Vite 8 single-page portfolio, deployed to GitHub Pages (`base: /portfolio/`) by `.github/workflows/deploy.yml` on push to `main`.
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev     # local dev server
+npm run build   # production build to dist/
+npm run lint
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Roadmap: restrained design system, structured project data, and an optional RAG-based portfolio assistant (the site must stay fully usable without it).
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Known gap: resume PDFs (`public/resume-{analog,power,rf}.pdf`) are not added yet, so the resume links 404.

@@ -1,0 +1,13 @@
+name = "portfolio-assistant"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Workers AI binding: runs open-source models on Cloudflare's free tier (10,000 neurons/day). No API key.
+[ai]
+binding = "AI"
+
+[vars]
+# Add your GitHub Pages origin (and localhost for development).
+ALLOWED_ORIGINS = "https://prasanthrayudu313.github.io,http://localhost:5173"
+# Optional: override the model. Check the Workers AI model catalog for current names and free-plan access.
+# AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
