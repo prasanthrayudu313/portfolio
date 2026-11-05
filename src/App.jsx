@@ -12,18 +12,27 @@ const AssistantPanel = lazy(() => import("./components/assistant/AssistantPanel"
 
 const resumes = [
   {
-    title: "Analog / Mixed-Signal Resume",
-    href: "/portfolio/resume-analog.pdf",
+    title: "ASIC Verification Engineer",
+    focus: "SystemVerilog testbenches, BFMs, FPGA/SoC validation",
+    href: "/portfolio/resume-asic-verification.pdf",
     label: "View Resume",
   },
   {
-    title: "Power / SoC / Edge AI Resume",
-    href: "/portfolio/resume-power.pdf",
+    title: "RTL Design Engineer",
+    focus: "Verilog/SystemVerilog design, timing closure, CDC",
+    href: "/portfolio/resume-rtl-design.pdf",
     label: "View Resume",
   },
   {
-    title: "RF / Wireless Resume",
-    href: "/portfolio/resume-rf.pdf",
+    title: "Silicon / Graduate Engineer",
+    focus: "Micro-architecture, RTL for accelerators, PPA and power tooling",
+    href: "/portfolio/resume-silicon-engineer.pdf",
+    label: "View Resume",
+  },
+  {
+    title: "GPU Engineer",
+    focus: "GPU architecture modeling, performance and power verification",
+    href: "/portfolio/resume-gpu-engineer.pdf",
     label: "View Resume",
   },
 ];
@@ -68,11 +77,12 @@ function SkillGroup({ title, items }) {
   );
 }
 
-function ResumeCard({ title, href, label }) {
+function ResumeCard({ title, focus, href, label }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className="resume-card glass-card">
-      <p className="section-kicker">Resume</p>
+      <p className="section-kicker">Resume · PDF</p>
       <h3>{title}</h3>
+      <p className="resume-focus">{focus}</p>
       <span className="resume-link">{label} ↗</span>
     </a>
   );
@@ -348,7 +358,7 @@ export default function App() {
                   <span aria-hidden="true">✦</span>&nbsp;Ask my portfolio
                 </button>
                 <a
-                  href="/portfolio/resume-power.pdf"
+                  href="/portfolio/resume-silicon-engineer.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="secondary-btn"
