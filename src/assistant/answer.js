@@ -207,7 +207,7 @@ const RULES = [
     /\b(github|linkedin|resume|resumes|cv)\b/,
     (q) =>
       /resume|cv/.test(q)
-        ? say(["Role-targeted resumes (analog, power/SoC/edge AI, RF/wireless) are in the Resumes section."], { actions: [go("resumes", "Go to resumes")] })
+        ? say(["Role-targeted resumes (ASIC verification, RTL design, silicon/graduate engineer, GPU engineer) are in the Resumes section as PDFs."], { actions: [go("resumes", "Go to resumes")] })
         : say(["His profiles are linked in the Contact section.", [`GitHub: ${CONTACT.github}`, `LinkedIn: ${CONTACT.linkedin}`]], { actions: [go("contact", "Go to contact")] }),
   ],
   [
