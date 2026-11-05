@@ -76,9 +76,10 @@ export default {
       return new Response(stream, {
         headers: { ...h, "Content-Type": "text/event-stream", "Cache-Control": "no-store", "X-Sources": built.sources.join(",") },
       });
-    } catch {
+    } catch (e) {
       // Free daily quota used up, model unavailable, etc. The site falls back to its built-in answers.
-      return json({ error: "ai_unavailable" }, 503, h);
+      // `detail` is the platform's error text (no visitor data), to make a wrong model name easy to spot.
+      return json({ error: "ai_unavailable", detail: String(e?.message || e).slice(0, 200) }, 503, h);
     }
   },
 };
