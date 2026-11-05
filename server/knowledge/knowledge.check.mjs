@@ -41,3 +41,9 @@ const plain = buildMessages([{ role: "user", content: "what did you build in Hyp
 assert.ok(!/DOCUMENT "/.test(plain.messages[0].content));
 
 console.log("knowledge.check: all passed");
+
+// A concept question must be framed as general knowledge even when his notes mention the topic.
+const cdc = buildMessages([{ role: "user", content: "Explain clock domain crossing" }]);
+assert.match(cdc.messages[0].content, /concept question.*kind 2 even when his NOTES mention/);
+assert.match(cdc.messages[0].content, /clock-domain crossing/i, "related notes should still be available as context");
+console.log("knowledge.check: framing rule present");
